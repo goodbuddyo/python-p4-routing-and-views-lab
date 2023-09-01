@@ -16,18 +16,26 @@ def user(parameter):
 
 @app.route('/count/<int:parameter>')
 def mycount(parameter):
-    range_nums = []
-    for i in range(parameter):
-        range_nums.append(str(i))
-        #if i < parameter:
-        #    range_nums.append(str(i) + '\n')
-        #else:
-        #    range_nums.append(str(i))
-        
-    print(*range_nums, sep="\n")
-            
-    return range_nums
-        
+    if isinstance(parameter, int) and parameter >= 0:
+        numbers = '\n'.join(map(str, range(parameter))) + '\n'
+        return numbers
+    else:
+        return "Invalid parameter. Please provide a non-negative integer."
+
+
+
+#@app.route('/count/<parameter>')
+#def mycount(parameter):
+#    result_string = "\n".join(map(str, parameter))
+#    for item in parameter:
+#        print(item)
+#    return result_string
+
+#my_range = range(param)
+#result = mycount(my_range)
+##print("Resulting string:")
+#print(result)
+
 
 
 if __name__ == '__main__':
